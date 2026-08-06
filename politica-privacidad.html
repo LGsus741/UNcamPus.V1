@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Política de privacidad — UNcamPus</title>
+<style>
+  :root { color-scheme: light dark; }
+  body {
+    max-width: 42rem; margin: 0 auto; padding: 2rem 1.25rem 5rem;
+    font: 17px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif;
+    color: #292b31; background: #eff0f8;
+  }
+  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .25rem; }
+  h2 { font-size: 1.15rem; margin: 2.5rem 0 .5rem; }
+  .fecha { color: #595d6c; margin: 0 0 2rem; font-size: .95rem; }
+  .aviso {
+    border-left: 3px solid #5d5294; padding: .75rem 0 .75rem 1rem;
+    background: #e4e7f5; margin: 1.5rem 0;
+  }
+  ul { padding-left: 1.2rem; }
+  li { margin: .4rem 0; }
+  code { background: #e4e7f5; padding: .1rem .35rem; border-radius: 3px; font-size: .9em; }
+  @media (prefers-color-scheme: dark) {
+    body { color: #ecedf5; background: #161826; }
+    .aviso { background: #1e2030; border-left-color: #9184d9; }
+    .fecha { color: #969aac; }
+    code { background: #1e2030; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Política de privacidad de UNcamPus</h1>
+<p class="fecha">Última actualización: 6 de agosto de 2026</p>
+
+<div class="aviso">
+  <strong>UNcamPus no es una aplicación oficial.</strong> La hace un estudiante
+  de la Universidad Nacional de Piura para estudiantes de la UNP. No pertenece
+  a la universidad, no la desarrolla ninguna de sus oficinas y nadie de la UNP
+  la respalda. Para cualquier trámite o dato con validez oficial, lo que vale
+  es el campus virtual.
+</div>
+
+<h2>Lo corto</h2>
+<p>
+  UNcamPus <strong>no tiene servidor propio</strong>. No recojo tus datos, no
+  los almaceno fuera de tu teléfono y no los comparto con nadie. Todo lo que
+  ves en la app se lo pide tu propio teléfono directamente a la UNP, con tu
+  sesión, y se queda ahí.
+</p>
+
+<h2>Qué datos maneja la app y dónde viven</h2>
+<ul>
+  <li>
+    <strong>Tus datos académicos</strong> —horario, notas, matrícula, plan de
+    estudios y publicaciones del aula virtual—. Se piden a los portales de la
+    UNP con tu propia sesión y se guardan en una base de datos
+    <strong>dentro de tu teléfono</strong>, para que la app abra al instante y
+    siga sirviendo sin señal. No salen de ahí.
+  </li>
+  <li>
+    <strong>Tu usuario y tu contraseña del campus</strong>, y solo si activas
+    «Entrar directo la próxima vez». Se guardan cifrados con AES-256
+    (<code>EncryptedSharedPreferences</code>) y la llave maestra vive en el
+    almacén de claves de Android —respaldado por hardware en los equipos que lo
+    tienen—, así que no se puede leer ese archivo sacándolo del teléfono. Se
+    usan para una sola cosa: volver a entrar al portal de la UNP cuando la
+    sesión caduca, para poder revisar el aula virtual en segundo plano. Al
+    desactivar la opción se borran al momento.
+  </li>
+  <li>
+    <strong>Cookies de sesión</strong> del campus, para no pedirte la
+    contraseña en cada petición. Caducan a las 8 horas y se borran al cerrar
+    sesión.
+  </li>
+  <li>
+    <strong>Lo que escribes en el simulador de notas.</strong> Es lo único que
+    no viene del campus. También se queda en el teléfono.
+  </li>
+</ul>
+
+<h2>Qué NO hace la app</h2>
+<ul>
+  <li>No envía tus datos a ningún servidor mío, porque no tengo ninguno.</li>
+  <li>No usa analítica, ni publicidad, ni informes de fallos de terceros.</li>
+  <li>No comparte, vende ni cede información a nadie.</li>
+  <li>No pide tu ubicación, contactos, cámara, micrófono ni archivos.</li>
+  <li>
+    No sube nada a la nube: la copia de seguridad automática de Android y la
+    transferencia a un teléfono nuevo están <strong>desactivadas</strong> para
+    esta app.
+  </li>
+</ul>
+
+<h2>Permisos que pide y para qué</h2>
+<ul>
+  <li><strong>Internet</strong> y <strong>estado de la red</strong>: para hablar con los portales de la UNP y saber si hay conexión.</li>
+  <li><strong>Notificaciones</strong>: para avisarte cuando un docente publica material, tareas o anuncios. Si lo rechazas, la app funciona entera, solo sin avisos.</li>
+  <li>
+    La app incluye la biblioteca WorkManager de Android para revisar el aula
+    virtual cada hora. Esa biblioteca añade por su cuenta los permisos
+    <code>WAKE_LOCK</code>, <code>RECEIVE_BOOT_COMPLETED</code> y
+    <code>FOREGROUND_SERVICE</code>. UNcamPus <strong>no arranca ningún
+    servicio en primer plano</strong>.
+  </li>
+</ul>
+
+<h2>Cómo borrar tus datos</h2>
+<p>
+  En <strong>Ajustes → Cerrar sesión</strong> se borran las credenciales
+  guardadas, las cookies y la copia local. Desinstalar la app elimina todo lo
+  que quedara. No hace falta pedírmelo a mí: nunca he tenido tus datos.
+</p>
+
+<h2>Menores de edad</h2>
+<p>
+  UNcamPus está dirigida a estudiantes universitarios y no se dirige a menores
+  de 13 años.
+</p>
+
+<h2>Cambios</h2>
+<p>
+  Si esta política cambia, la fecha de arriba lo dirá. Si algún día la app
+  empezara a enviar datos a algún sitio, se anunciaría dentro de la propia app
+  antes de hacerlo.
+</p>
+
+<h2>Contacto</h2>
+<p>
+  Escribe a <a href="mailto:CORREO-DE-CONTACTO">CORREO-DE-CONTACTO</a>.
+</p>
+
+</body>
+</html>
