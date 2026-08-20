@@ -13,6 +13,7 @@
   }
   h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .25rem; }
   h2 { font-size: 1.15rem; margin: 2.5rem 0 .5rem; }
+  h3 { font-size: 1rem; margin: 1.5rem 0 .35rem; color: #595d6c; }
   .fecha { color: #595d6c; margin: 0 0 2rem; font-size: .95rem; }
   .aviso {
     border-left: 3px solid #5d5294; padding: .75rem 0 .75rem 1rem;
@@ -24,7 +25,7 @@
   @media (prefers-color-scheme: dark) {
     body { color: #ecedf5; background: #161826; }
     .aviso { background: #1e2030; border-left-color: #9184d9; }
-    .fecha { color: #969aac; }
+    .fecha, h3 { color: #969aac; }
     code { background: #1e2030; }
   }
 </style>
@@ -32,7 +33,7 @@
 <body>
 
 <h1>Política de privacidad de UNcamPus</h1>
-<p class="fecha">Última actualización: 6 de agosto de 2026</p>
+<p class="fecha">Última actualización: 19 de agosto de 2026</p>
 
 <div class="aviso">
   <strong>UNcamPus no es una aplicación oficial.</strong> La hace un estudiante
@@ -44,10 +45,15 @@
 
 <h2>Lo corto</h2>
 <p>
-  UNcamPus <strong>no tiene servidor propio</strong>. No recojo tus datos, no
-  los almaceno fuera de tu teléfono y no los comparto con nadie. Todo lo que
-  ves en la app se lo pide tu propio teléfono directamente a la UNP, con tu
-  sesión, y se queda ahí.
+  UNcamPus <strong>no tiene servidor propio</strong>. Todo lo que ves en la app
+  se lo pide tu propio teléfono directamente a la UNP, con tu sesión, y se queda
+  ahí: no lo recojo, no lo almaceno fuera de tu teléfono y no lo comparto con
+  nadie.
+</p>
+<p>
+  <strong>Hay una sola excepción, y la decides tú:</strong> si envías un reporte
+  de problema, ese mensaje sí me llega, con tu código de estudiante para poder
+  responderte. Está explicado entero más abajo.
 </p>
 
 <h2>Qué datos maneja la app y dónde viven</h2>
@@ -86,8 +92,12 @@
 
 <h2>Qué NO hace la app</h2>
 <ul>
-  <li>No envía tus datos a ningún servidor mío, porque no tengo ninguno.</li>
-  <li>No usa analítica, ni publicidad, ni informes de fallos de terceros.</li>
+  <li>
+    No envía tus datos a ningún servidor mío por su cuenta. La única
+    excepción son los <strong>reportes de problemas</strong>, que sales tú a
+    mandar: ver la sección siguiente.
+  </li>
+  <li>No usa analítica, ni publicidad, ni informes de fallos automáticos: nada se envía sin que tú lo pidas.</li>
   <li>No comparte, vende ni cede información a nadie.</li>
   <li>No pide tu ubicación, contactos, cámara, micrófono ni archivos.</li>
   <li>
@@ -96,6 +106,46 @@
     esta app.
   </li>
 </ul>
+
+<h2>Cuando reportas un problema</h2>
+<p>
+  Es <strong>lo único que sale de tu teléfono</strong>, y solo ocurre si tú
+  pulsas «Enviar» en <strong>Ajustes → Reportar un problema</strong> o en el
+  mismo botón de la pantalla de entrada.
+</p>
+<h3>Qué se envía</h3>
+<ul>
+  <li>El mensaje que escribes y si lo marcaste como fallo, idea o duda.</li>
+  <li>La pantalla desde la que reportaste.</li>
+  <li>
+    <strong>Tu código de estudiante</strong>, para poder escribirte si el
+    reporte no se entiende o falta un dato. Si reportas sin haber iniciado
+    sesión, se manda solo si tú lo escribes: ahí es opcional.
+  </li>
+  <li>Versión de la app, modelo del teléfono, versión de Android e idioma.</li>
+  <li>Una captura, <strong>solo si tú la adjuntas</strong>.</li>
+</ul>
+<h3>Qué NO se envía</h3>
+<p>
+  Tu nombre, tus notas, tu horario, tu asistencia y tu sesión del campus
+  <strong>no salen nunca</strong> en un reporte. Lo único que puede llevar datos
+  de más es la captura que elijas tú, y por eso la app te avisa antes de dejar
+  adjuntarla.
+</p>
+<h3>A dónde llega y quién lo ve</h3>
+<p>
+  A una hoja de cálculo <strong>privada</strong> del autor, alojada en Google
+  (Google Sheets y Google Drive, para los adjuntos). El envío va cifrado por
+  HTTPS. No hay intermediarios, no se comparte con terceros, no se usa para
+  publicidad y no se cruza con ninguna otra información.
+</p>
+<h3>Cuánto se guarda y cómo se borra</h3>
+<p>
+  Se guarda mientras haga falta para arreglar lo reportado. Al enviar, la app te
+  da un código corto —del estilo <code>R-4F2A</code>—: escríbeme con ese código
+  y borro ese reporte. Es la forma de identificar el tuyo sin que tengas que
+  darme nada más.
+</p>
 
 <h2>Permisos que pide y para qué</h2>
 <ul>
@@ -123,8 +173,9 @@
   con los bloques que hayas ocultado o movido y tu plan de matrícula.
 </p>
 <p>
-  Desinstalar la app elimina todo lo que quedara. No hace falta pedírmelo a mí:
-  nunca he tenido tus datos.
+  Desinstalar la app elimina todo lo que quedara en el teléfono. Lo único que
+  puede quedar fuera de él son los reportes que hayas enviado: para borrar uno,
+  escríbeme con su código <code>R-XXXX</code>.
 </p>
 
 <h2>Menores de edad</h2>
