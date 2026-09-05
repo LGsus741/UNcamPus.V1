@@ -33,7 +33,7 @@
 <body>
 
 <h1>Política de privacidad de UNcamPus</h1>
-<p class="fecha">Última actualización: 19 de agosto de 2026</p>
+<p class="fecha">Última actualización: 1 de setiembre de 2026</p>
 
 <div class="aviso">
   <strong>UNcamPus no es una aplicación oficial.</strong> La hace un estudiante
@@ -81,6 +81,17 @@
     sesión.
   </li>
   <li>
+    <strong>Una copia de seguridad de todo eso, cifrada, en el propio
+    teléfono.</strong> Sirve para que volver a entrar después de un tiempo no te
+    obligue a esperar a que se descargue el expediente entero. Está cifrada con
+    AES-256-GCM y su llave vive en el almacén de claves de Android, igual que la
+    contraseña; el archivo lleva por nombre un resumen de tu usuario, así que en
+    un teléfono compartido nadie ve de quién es, y solo se puede volcar
+    <strong>después</strong> de que el campus acepte esas mismas credenciales.
+    <strong>Sobrevive a «Cerrar sesión»</strong> —de eso se trata— y desaparece
+    con «Borrar mis datos de este teléfono» y al desinstalar.
+  </li>
+  <li>
     <strong>Lo que escribes en el simulador de notas.</strong> Es lo único que
     no viene del campus, y por eso es lo único que <strong>no se borra al
     cerrar sesión</strong>: no existe en ningún servidor y no se podría volver a
@@ -89,6 +100,26 @@
     borrarlo hay una opción propia en Ajustes.
   </li>
 </ul>
+
+<h2>Lo que la app escribe en el campus</h2>
+<p>
+  Desde la versión 1.13 la app <strong>puede publicar comentarios en los foros
+  del aula virtual</strong> y borrar los tuyos. Hasta entonces solo leía. Eso va
+  a tu propio aula virtual, con tu propia sesión, y solo cuando tú escribes el
+  comentario y pulsas el botón: <strong>a mí no me llega nada</strong> y no pasa
+  por ningún servidor mío. Ten en cuenta lo obvio, que es cosa del campus y no de
+  la app: <strong>un comentario en un foro lo ven tu docente y tu clase</strong>.
+</p>
+<p>
+  Desde el 5 de setiembre de 2026 la app <strong>también puede entregar una
+  tarea</strong> en el aula virtual. Estuvo desactivado a propósito, y la razón
+  no ha desaparecido: un comentario se puede borrar, y <strong>una entrega gasta
+  un intento y puede costar una nota</strong>. Por eso el botón solo aparece con
+  el plazo abierto y con intentos disponibles, siempre te pregunta antes
+  diciéndote cuántos intentos te quedarán, y el archivo sale de tu teléfono
+  únicamente hacia el aula virtual de la UNP, con tu sesión. A mí no me llega
+  nada.
+</p>
 
 <h2>Qué NO hace la app</h2>
 <ul>
@@ -109,9 +140,10 @@
 
 <h2>Cuando reportas un problema</h2>
 <p>
-  Es <strong>lo único que sale de tu teléfono</strong>, y solo ocurre si tú
-  pulsas «Enviar» en <strong>Ajustes → Reportar un problema</strong> o en el
-  mismo botón de la pantalla de entrada.
+  Es <strong>lo único que sale de tu teléfono hacia mí</strong> —lo demás que
+  sale va a la UNP, con tu sesión— y solo ocurre si tú pulsas «Enviar» en
+  <strong>Ajustes → Reportar un problema</strong> o en el mismo botón de la
+  pantalla de entrada.
 </p>
 <h3>Qué se envía</h3>
 <ul>
@@ -163,7 +195,11 @@
 <h2>Cómo borrar tus datos</h2>
 <p>
   En <strong>Ajustes → Cerrar sesión</strong> se borran las credenciales
-  guardadas, las cookies y la copia local de lo que publica el campus.
+  guardadas, las cookies y la copia local de lo que publica el campus. Lo que
+  <strong>sí queda</strong> es la copia de seguridad cifrada descrita arriba, para
+  que la próxima vez que entres con esa misma cuenta la app abra de una: nadie
+  puede leerla sin la llave del almacén de Android, y no se vuelca hasta que el
+  campus acepta tu usuario y tu contraseña.
 </p>
 <p>
   Lo que escribiste en el simulador de notas <strong>se conserva a propósito</strong>,
