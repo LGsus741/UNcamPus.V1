@@ -4,233 +4,583 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Política de privacidad — UNcamPus</title>
+<meta name="description" content="Qué datos maneja UNcamPus, dónde viven y cómo borrarlos. La app no tiene servidor propio.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><text y='.9em' font-size='460'>🎓</text></svg>">
+
+<!--
+     ══════════════════════════════════════════════════════════════════════
+     Política de privacidad de UNcamPus — página suelta para GitHub Pages.
+
+     ## Sin una sola petición a terceros, y es deliberado
+
+     No hay fuentes de Google, ni hojas de estilo de un CDN, ni analítica, ni
+     un solo `<img src>` externo. Todo va aquí dentro: los estilos, el
+     emblema (SVG en línea) y los iconos. Una página que promete «no recojo
+     nada» y de paso le cuenta tu visita a tres dominios ajenos se
+     contradice a sí misma; además, Play lee esta URL como la política de la
+     app y lo coherente es que se comporte como la app.
+
+     Por eso también pesa poco y abre sin conexión decente, que es como la
+     va a abrir un estudiante desde el móvil.
+
+     ## El texto NO se ha tocado
+
+     Esto es un documento legal: las frases son exactamente las de la versión
+     del 01/09/2026 y las del 05/09 sobre la entrega de tareas. Lo que cambia
+     el 06/09/2026 es **cómo se presenta** —jerarquía, índice, tarjetas,
+     marcas de sí/no— porque era un muro de texto plano y encima con los
+     colores viejos de la app.
+
+     ## Los colores son los de la app, uno a uno
+
+     Salen de `values/colors.xml`, `values/extra_colors.xml` y sus pares de
+     `values-night/`. No están «inspirados»: son los mismos valores, para que
+     quien salte de la app a esta página no sienta que cambió de sitio.
+
+     ## El contraste, medido y no supuesto
+
+     Los once pares de texto sobre fondo de esta página se midieron uno a uno,
+     como se hace en la app. Ninguno baja del mínimo de la pauta (4.5:1):
+
+       claro  — el peor es la fecha sobre su caja hundida, 5.55:1
+       oscuro — el peor es un enlace sobre la tarjeta,      4.70:1
+
+     El texto normal sobre tarjeta va a 13.87:1 de día y 12.54:1 de noche.
+     Si alguien retoca un color, esos son los números que hay que rehacer.
+     ══════════════════════════════════════════════════════════════════════
+-->
+
 <style>
-  :root { color-scheme: light dark; }
-  body {
-    max-width: 42rem; margin: 0 auto; padding: 2rem 1.25rem 5rem;
-    font: 17px/1.65 -apple-system, "Segoe UI", Roboto, sans-serif;
-    color: #292b31; background: #eff0f8;
+/* ── La paleta de la app, literal ─────────────────────────────────────── */
+:root {
+  --pagina-1:   #EDF3F5;   /* fondo_inicio  */
+  --pagina-2:   #D9F8FC;   /* fondo_fin     */
+  --tarjeta:    #FBFDFE;   /* superficie_tarjeta */
+  --superficie: #EFF7F9;   /* arena         */
+  --hundida:    #E0EFF3;   /* arena_hundida */
+  --borde:      #BDD5DB;   /* arena_borde   */
+  --tinta:      #292B31;
+  --tinta-suave:#595D6C;
+  --acento:     #5D5294;   /* azul_profundo */
+  --acento-caja:#E7E5FE;   /* azul_claro    */
+  --acento-tinta:#2B2741;  /* azul_tinta    */
+  --bien:       #22683B;   /* estado_bien   */
+  --critico:    #933235;   /* estado_critico*/
+  --sombra:     0 1px 2px rgba(41,43,49,.05);
+  --radio:      14px;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --pagina-1:   #0F1315;
+    --pagina-2:   #0C2C37;
+    --tarjeta:    #1B282A;
+    --superficie: #0E1516;
+    --hundida:    #121A1B;
+    --borde:      #294C51;
+    --tinta:      #E9E9ED;
+    --tinta-suave:#9397AB;
+    --acento:     #9184D9;
+    --acento-caja:#2B2741;
+    --acento-tinta:#D2CEFD;
+    --bien:       #91CBA0;
+    --critico:    #E69794;
+    --sombra:     none;
   }
-  h1 { font-size: 1.9rem; line-height: 1.2; margin: 0 0 .25rem; }
-  h2 { font-size: 1.15rem; margin: 2.5rem 0 .5rem; }
-  h3 { font-size: 1rem; margin: 1.5rem 0 .35rem; color: #595d6c; }
-  .fecha { color: #595d6c; margin: 0 0 2rem; font-size: .95rem; }
-  .aviso {
-    border-left: 3px solid #5d5294; padding: .75rem 0 .75rem 1rem;
-    background: #e4e7f5; margin: 1.5rem 0;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+}
+
+body {
+  margin: 0;
+  padding: 0 1.15rem 5rem;
+  /* El lavado de la app: mismo sentido —arriba-izquierda a abajo-derecha— y
+     `fixed` para que no se corte al desplazar en una página larga. */
+  background: linear-gradient(160deg, var(--pagina-1) 0%, var(--pagina-2) 100%) fixed;
+  color: var(--tinta);
+  font: 17px/1.65 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        "Helvetica Neue", Arial, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+.envoltura { max-width: 44rem; margin: 0 auto; }
+
+/* ── Saltar al contenido: lo primero que encuentra un lector de pantalla ─ */
+.saltar {
+  position: absolute; left: -9999px;
+  background: var(--acento); color: #fff;
+  padding: .7rem 1.1rem; border-radius: 0 0 10px 0; z-index: 10;
+}
+.saltar:focus { left: 0; top: 0; }
+
+/* ── Cabecera ─────────────────────────────────────────────────────────── */
+.cabecera {
+  display: flex; align-items: center; gap: .8rem;
+  padding: 2.2rem 0 1.6rem;
+}
+.emblema { width: 44px; height: 44px; flex: none; }
+.emblema path { fill: none; stroke: var(--acento); }
+.marca { font-size: 1.05rem; font-weight: 600; letter-spacing: .01em; }
+.marca span {
+  display: block; font-weight: 400; font-size: .82rem;
+  color: var(--tinta-suave); letter-spacing: .04em; text-transform: uppercase;
+}
+
+h1 {
+  font-size: clamp(1.75rem, 6vw, 2.3rem);
+  line-height: 1.15; letter-spacing: -.02em;
+  margin: 0 0 .6rem;
+}
+
+/* Radio de 10px y no de píldora: en pantallas estrechas la fecha entera no
+   cabe en una línea, y con 999px los dos renglones salen con unos lóbulos
+   que parecen un fallo. Con 10px el salto se ve intencionado. */
+.fecha {
+  display: inline-block; margin: 0 0 1.8rem;
+  background: var(--hundida); color: var(--tinta-suave);
+  border: 1px solid var(--borde);
+  padding: .32rem .7rem; border-radius: 10px;
+  font-size: .82rem; letter-spacing: .01em;
+}
+
+/* ── El aviso de «no oficial» ─────────────────────────────────────────── */
+.aviso {
+  display: flex; gap: .85rem;
+  background: var(--acento-caja); color: var(--acento-tinta);
+  border: 1px solid transparent;
+  border-radius: var(--radio);
+  padding: 1.05rem 1.15rem;
+  margin: 0 0 2.2rem;
+}
+@media (prefers-color-scheme: dark) { .aviso { border-color: var(--acento); } }
+.aviso svg { width: 22px; height: 22px; flex: none; margin-top: .15rem; }
+.aviso p { margin: 0; }
+
+/* ── El resumen ───────────────────────────────────────────────────────── */
+.resumen {
+  background: var(--tarjeta); border: 1px solid var(--borde);
+  border-radius: var(--radio); box-shadow: var(--sombra);
+  padding: 1.3rem 1.35rem; margin: 0 0 2.4rem;
+  border-left: 4px solid var(--acento);
+}
+.resumen h2 { margin-top: 0; }
+.resumen p:last-child { margin-bottom: 0; }
+
+/* ── Índice ───────────────────────────────────────────────────────────── */
+.indice {
+  background: var(--superficie); border: 1px solid var(--borde);
+  border-radius: var(--radio); padding: 1.1rem 1.25rem; margin: 0 0 2.6rem;
+}
+.indice h2 {
+  margin: 0 0 .7rem; font-size: .8rem; letter-spacing: .1em;
+  text-transform: uppercase; color: var(--tinta-suave); font-weight: 600;
+}
+.indice ol {
+  margin: 0; padding: 0; list-style: none;
+  counter-reset: seccion;
+  display: grid; gap: .1rem;
+}
+/* Sin el punto de la regla general: aquí la viñeta es el número, y los dos
+   juntos se ven como una lista mal cerrada. */
+.indice li { counter-increment: seccion; margin: 0; padding-left: 0; }
+.indice li::before { content: none; }
+.indice a {
+  display: flex; gap: .7rem; align-items: baseline;
+  padding: .42rem .5rem; border-radius: 8px;
+  color: var(--tinta); text-decoration: none;
+}
+.indice a::before {
+  content: counter(seccion);
+  color: var(--acento); font-variant-numeric: tabular-nums;
+  font-size: .85rem; min-width: 1.1rem;
+}
+.indice a:hover, .indice a:focus-visible { background: var(--hundida); }
+
+/* ── Secciones ────────────────────────────────────────────────────────── */
+section {
+  background: var(--tarjeta); border: 1px solid var(--borde);
+  border-radius: var(--radio); box-shadow: var(--sombra);
+  padding: .3rem 1.35rem 1.35rem;
+  margin: 0 0 1.15rem;
+}
+/* Compensa la barra fija de arriba al saltar desde el índice. */
+section { scroll-margin-top: 1rem; }
+
+h2 {
+  font-size: 1.18rem; letter-spacing: -.01em;
+  margin: 1.5rem 0 .6rem;
+}
+h3 {
+  font-size: .78rem; letter-spacing: .09em; text-transform: uppercase;
+  color: var(--tinta-suave); font-weight: 600;
+  margin: 1.6rem 0 .5rem;
+}
+
+p { margin: .8rem 0; }
+
+ul { padding-left: 0; list-style: none; margin: .8rem 0; }
+li { margin: .65rem 0; padding-left: 1.35rem; position: relative; }
+/* El punto es del acento y NO un carácter: así no lo lee un lector de
+   pantalla como si fuera contenido. */
+li::before {
+  content: ""; position: absolute; left: .25rem; top: .62em;
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--acento);
+}
+
+/* ── Listas con marca ─────────────────────────────────────────────────────
+   Dos marcas y NO una pareja verde/rojo, que fue el primer intento y estaba
+   mal: bajo «Qué SE envía» una ✕ roja se lee como «esto no se envía», o sea
+   lo contrario de lo que dice el título. En un documento de privacidad eso
+   es peor que no poner nada.
+
+   - `.garantia` (✓ verde): lo que la app **no** hace. Cada punto es una
+     promesa cumplida, y el visto lo dice.
+   - `.sale`     (↑ acento): lo que **sí** sale del teléfono. La flecha dice
+     «esto viaja», sin dar a entender ni permiso ni prohibición.
+
+   El color nunca va solo: lleva símbolo, porque quien no distingue verde de
+   rojo se quedaría sin la mitad del mensaje.
+   ─────────────────────────────────────────────────────────────────────── */
+.garantia li::before, .sale li::before {
+  content: ""; width: auto; height: auto; background: none;
+  left: 0; top: .02em; font-weight: 700; font-size: .95em;
+}
+.garantia li, .sale li { padding-left: 1.6rem; }
+.garantia li::before { content: "✓"; color: var(--bien); }
+.sale li::before { content: "↑"; color: var(--acento); }
+
+code {
+  background: var(--hundida); border: 1px solid var(--borde);
+  padding: .08rem .38rem; border-radius: 5px;
+  font-size: .87em; font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  word-break: break-word;
+}
+
+strong { font-weight: 600; }
+
+a { color: var(--acento); text-underline-offset: 2px; }
+a:focus-visible, .indice a:focus-visible {
+  outline: 2px solid var(--acento); outline-offset: 2px; border-radius: 4px;
+}
+
+/* ── Pie ──────────────────────────────────────────────────────────────── */
+.pie {
+  margin-top: 2.6rem; padding-top: 1.4rem;
+  border-top: 1px solid var(--borde);
+  color: var(--tinta-suave); font-size: .9rem;
+}
+.pie p { margin: .45rem 0; }
+
+/* ── Impresión: sin fondo, sin índice, todo seguido ───────────────────── */
+@media print {
+  body { background: #fff; color: #000; padding: 0; font-size: 11pt; }
+  .indice, .saltar { display: none; }
+  section, .resumen, .aviso {
+    border: none; box-shadow: none; padding: 0; margin: 0 0 .6rem;
+    background: none; break-inside: avoid;
   }
-  ul { padding-left: 1.2rem; }
-  li { margin: .4rem 0; }
-  code { background: #e4e7f5; padding: .1rem .35rem; border-radius: 3px; font-size: .9em; }
-  @media (prefers-color-scheme: dark) {
-    body { color: #ecedf5; background: #161826; }
-    .aviso { background: #1e2030; border-left-color: #9184d9; }
-    .fecha, h3 { color: #969aac; }
-    code { background: #1e2030; }
-  }
+  a { color: #000; }
+}
 </style>
 </head>
 <body>
 
-<h1>Política de privacidad de UNcamPus</h1>
-<p class="fecha">Última actualización: 5 de Setiembre de 2026</p>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
 
-<div class="aviso">
-  <strong>UNcamPus no es una aplicación oficial.</strong> La hace un estudiante
-  de la Universidad Nacional de Piura para estudiantes de la UNP. No pertenece
-  a la universidad, no la desarrolla ninguna de sus oficinas y nadie de la UNP
-  la respalda. Para cualquier trámite o dato con validez oficial, lo que vale
-  es el campus virtual.
+<div class="envoltura">
+
+  <header class="cabecera">
+    <!--
+         El emblema de la app, los mismos trazados de `marca_uncampus.xml`
+         (dos aros, portátil y birrete). Va en línea y no como archivo para
+         no pedirle nada a ningún servidor, y hereda el color del acento con
+         `currentColor`, así que el tema oscuro no necesita una segunda copia.
+    -->
+    <svg class="emblema" viewBox="0 0 512 512" aria-hidden="true" focusable="false">
+      <g stroke-width="5" stroke-linejoin="round">
+        <path d="M256,256 m-230,0 a230,230 0 1,0 460,0 a230,230 0 1,0 -460,0"/>
+        <path d="M256,256 m-196,0 a196,196 0 1,0 392,0 a196,196 0 1,0 -392,0" stroke-width="7"/>
+        <g transform="translate(25.6,25.6) scale(0.9)">
+          <path d="M164,205 L348,205 A13,13 0 0 1 361,218 L361,344 L151,344 L151,218 A13,13 0 0 1 164,205 Z" stroke-width="7"/>
+          <path d="M136,352 L376,352 A9,9 0 0 1 385,361 A22,22 0 0 1 363,383 L149,383 A22,22 0 0 1 127,361 A9,9 0 0 1 136,352 Z" stroke-width="7"/>
+          <path d="M256,140 L344,172 L256,204 L168,172 Z" stroke-width="7"/>
+          <path d="M306,184 L306,209 A50,21 0 0 1 206,209 L206,184" stroke-width="7"/>
+          <path d="M340,175 L340,205" stroke-width="7"/>
+          <path d="M340,209 m-8,0 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0" stroke-width="6"/>
+        </g>
+      </g>
+    </svg>
+    <div class="marca">
+      UNcamPus
+      <span>App no oficial · UNP</span>
+    </div>
+  </header>
+
+  <main id="contenido">
+
+    <h1>Política de privacidad de UNcamPus</h1>
+    <p class="fecha">Última actualización: 5 de setiembre de 2026</p>
+
+    <div class="aviso">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <path fill="currentColor" d="M12 2 1 21h22L12 2zm0 5 7.5 13h-15L12 7zm-1 4v4h2v-4h-2zm0 6v2h2v-2h-2z"/>
+      </svg>
+      <p>
+        <strong>UNcamPus no es una aplicación oficial.</strong> La hace un estudiante
+        de la Universidad Nacional de Piura para estudiantes de la UNP. No pertenece
+        a la universidad, no la desarrolla ninguna de sus oficinas y nadie de la UNP
+        la respalda. Para cualquier trámite o dato con validez oficial, lo que vale
+        es el campus virtual.
+      </p>
+    </div>
+
+    <div class="resumen">
+      <h2>Lo corto</h2>
+      <p>
+        UNcamPus <strong>no tiene servidor propio</strong>. Todo lo que ves en la app
+        se lo pide tu propio teléfono directamente a la UNP, con tu sesión, y se queda
+        ahí: no lo recojo, no lo almaceno fuera de tu teléfono y no lo comparto con
+        nadie.
+      </p>
+      <p>
+        <strong>Hay una sola excepción, y la decides tú:</strong> si envías un reporte
+        de problema, ese mensaje sí me llega, con tu código de estudiante para poder
+        responderte. Está explicado entero más abajo.
+      </p>
+    </div>
+
+    <!--
+         El índice es nuevo. La política tiene nueve secciones y la que casi
+         siempre se viene a buscar —«cómo borro mis datos»— estaba la octava,
+         a cinco pantallas de desplazamiento en un móvil.
+    -->
+    <nav class="indice" aria-label="Secciones de esta política">
+      <h2>En esta página</h2>
+      <ol>
+        <li><a href="#datos">Qué datos maneja la app y dónde viven</a></li>
+        <li><a href="#escribe">Lo que la app escribe en el campus</a></li>
+        <li><a href="#no-hace">Qué NO hace la app</a></li>
+        <li><a href="#reportes">Cuando reportas un problema</a></li>
+        <li><a href="#permisos">Permisos que pide y para qué</a></li>
+        <li><a href="#borrar">Cómo borrar tus datos</a></li>
+        <li><a href="#menores">Menores de edad</a></li>
+        <li><a href="#cambios">Cambios</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ol>
+    </nav>
+
+    <section id="datos">
+      <h2>Qué datos maneja la app y dónde viven</h2>
+      <ul>
+        <li>
+          <strong>Tus datos académicos</strong> —horario, notas, matrícula, plan de
+          estudios y publicaciones del aula virtual—. Se piden a los portales de la
+          UNP con tu propia sesión y se guardan en una base de datos
+          <strong>dentro de tu teléfono</strong>, para que la app abra al instante y
+          siga sirviendo sin señal. No salen de ahí.
+        </li>
+        <li>
+          <strong>Tu usuario y tu contraseña del campus</strong>, y solo si activas
+          «Entrar directo la próxima vez». Se guardan cifrados con AES-256
+          (<code>EncryptedSharedPreferences</code>) y la llave maestra vive en el
+          almacén de claves de Android —respaldado por hardware en los equipos que lo
+          tienen—, así que no se puede leer ese archivo sacándolo del teléfono. Se
+          usan para una sola cosa: volver a entrar al portal de la UNP cuando la
+          sesión caduca, para poder revisar el aula virtual en segundo plano. Al
+          desactivar la opción se borran al momento.
+        </li>
+        <li>
+          <strong>Cookies de sesión</strong> del campus, para no pedirte la
+          contraseña en cada petición. Caducan a las 8 horas y se borran al cerrar
+          sesión.
+        </li>
+        <li>
+          <strong>Una copia de seguridad de todo eso, cifrada, en el propio
+          teléfono.</strong> Sirve para que volver a entrar después de un tiempo no te
+          obligue a esperar a que se descargue el expediente entero. Está cifrada con
+          AES-256-GCM y su llave vive en el almacén de claves de Android, igual que la
+          contraseña; el archivo lleva por nombre un resumen de tu usuario, así que en
+          un teléfono compartido nadie ve de quién es, y solo se puede volcar
+          <strong>después</strong> de que el campus acepte esas mismas credenciales.
+          <strong>Sobrevive a «Cerrar sesión»</strong> —de eso se trata— y desaparece
+          con «Borrar mis datos de este teléfono» y al desinstalar.
+        </li>
+        <li>
+          <strong>Lo que escribes en el simulador de notas.</strong> Es lo único que
+          no viene del campus, y por eso es lo único que <strong>no se borra al
+          cerrar sesión</strong>: no existe en ningún servidor y no se podría volver a
+          descargar. Se queda en el teléfono, marcado con tu código de estudiante, así
+          que si otra persona entra con su cuenta en ese mismo teléfono no lo ve. Para
+          borrarlo hay una opción propia en Ajustes.
+        </li>
+      </ul>
+    </section>
+
+    <section id="escribe">
+      <h2>Lo que la app escribe en el campus</h2>
+      <p>
+        Desde la versión 1.13 la app <strong>puede publicar comentarios en los foros
+        del aula virtual</strong> y borrar los tuyos. Hasta entonces solo leía. Eso va
+        a tu propio aula virtual, con tu propia sesión, y solo cuando tú escribes el
+        comentario y pulsas el botón: <strong>a mí no me llega nada</strong> y no pasa
+        por ningún servidor mío. Ten en cuenta lo obvio, que es cosa del campus y no de
+        la app: <strong>un comentario en un foro lo ven tu docente y tu clase</strong>.
+      </p>
+      <p>
+        Desde el 5 de setiembre de 2026 la app <strong>también puede entregar una
+        tarea</strong> en el aula virtual. Estuvo desactivado a propósito, y la razón
+        no ha desaparecido: un comentario se puede borrar, y <strong>una entrega gasta
+        un intento y puede costar una nota</strong>. Por eso el botón solo aparece con
+        el plazo abierto y con intentos disponibles, siempre te pregunta antes
+        diciéndote cuántos intentos te quedarán, y el archivo sale de tu teléfono
+        únicamente hacia el aula virtual de la UNP, con tu sesión. A mí no me llega
+        nada.
+      </p>
+    </section>
+
+    <section id="no-hace">
+      <h2>Qué NO hace la app</h2>
+      <ul class="garantia">
+        <li>
+          No envía tus datos a ningún servidor mío por su cuenta. La única
+          excepción son los <strong>reportes de problemas</strong>, que sales tú a
+          mandar: ver la sección siguiente.
+        </li>
+        <li>No usa analítica, ni publicidad, ni informes de fallos automáticos: nada se envía sin que tú lo pidas.</li>
+        <li>No comparte, vende ni cede información a nadie.</li>
+        <li>No pide tu ubicación, contactos, cámara, micrófono ni archivos.</li>
+        <li>
+          No sube nada a la nube: la copia de seguridad automática de Android y la
+          transferencia a un teléfono nuevo están <strong>desactivadas</strong> para
+          esta app.
+        </li>
+      </ul>
+    </section>
+
+    <section id="reportes">
+      <h2>Cuando reportas un problema</h2>
+      <p>
+        Es <strong>lo único que sale de tu teléfono hacia mí</strong> —lo demás que
+        sale va a la UNP, con tu sesión— y solo ocurre si tú pulsas «Enviar» en
+        <strong>Ajustes → Reportar un problema</strong> o en el mismo botón de la
+        pantalla de entrada.
+      </p>
+
+      <h3>Qué se envía</h3>
+      <ul class="sale">
+        <li>El mensaje que escribes y si lo marcaste como fallo, idea o duda.</li>
+        <li>La pantalla desde la que reportaste.</li>
+        <li>
+          <strong>Tu código de estudiante</strong>, para poder escribirte si el
+          reporte no se entiende o falta un dato. Si reportas sin haber iniciado
+          sesión, se manda solo si tú lo escribes: ahí es opcional.
+        </li>
+        <li>Versión de la app, modelo del teléfono, versión de Android e idioma.</li>
+        <li>Una captura, <strong>solo si tú la adjuntas</strong>.</li>
+      </ul>
+
+      <h3>Qué NO se envía</h3>
+      <p>
+        Tu nombre, tus notas, tu horario, tu asistencia y tu sesión del campus
+        <strong>no salen nunca</strong> en un reporte. Lo único que puede llevar datos
+        de más es la captura que elijas tú, y por eso la app te avisa antes de dejar
+        adjuntarla.
+      </p>
+
+      <h3>A dónde llega y quién lo ve</h3>
+      <p>
+        A una hoja de cálculo <strong>privada</strong> del autor, alojada en Google
+        (Google Sheets y Google Drive, para los adjuntos). El envío va cifrado por
+        HTTPS. No hay intermediarios, no se comparte con terceros, no se usa para
+        publicidad y no se cruza con ninguna otra información.
+      </p>
+
+      <h3>Cuánto se guarda y cómo se borra</h3>
+      <p>
+        Se guarda mientras haga falta para arreglar lo reportado. Al enviar, la app te
+        da un código corto —del estilo <code>R-4F2A</code>—: escríbeme con ese código
+        y borro ese reporte. Es la forma de identificar el tuyo sin que tengas que
+        darme nada más.
+      </p>
+    </section>
+
+    <section id="permisos">
+      <h2>Permisos que pide y para qué</h2>
+      <ul>
+        <li><strong>Internet</strong> y <strong>estado de la red</strong>: para hablar con los portales de la UNP y saber si hay conexión.</li>
+        <li><strong>Notificaciones</strong>: para avisarte cuando un docente publica material, tareas o anuncios. Si lo rechazas, la app funciona entera, solo sin avisos.</li>
+        <li>
+          La app incluye la biblioteca WorkManager de Android para revisar el aula
+          virtual cada hora. Esa biblioteca añade por su cuenta los permisos
+          <code>WAKE_LOCK</code>, <code>RECEIVE_BOOT_COMPLETED</code> y
+          <code>FOREGROUND_SERVICE</code>. UNcamPus <strong>no arranca ningún
+          servicio en primer plano</strong>.
+        </li>
+      </ul>
+    </section>
+
+    <section id="borrar">
+      <h2>Cómo borrar tus datos</h2>
+      <p>
+        En <strong>Ajustes → Cerrar sesión</strong> se borran las credenciales
+        guardadas, las cookies y la copia local de lo que publica el campus. Lo que
+        <strong>sí queda</strong> es la copia de seguridad cifrada descrita arriba, para
+        que la próxima vez que entres con esa misma cuenta la app abra de una: nadie
+        puede leerla sin la llave del almacén de Android, y no se vuelca hasta que el
+        campus acepta tu usuario y tu contraseña.
+      </p>
+      <p>
+        Lo que escribiste en el simulador de notas <strong>se conserva a propósito</strong>,
+        porque no se puede recuperar de ningún sitio: queda marcado con tu código y
+        nadie más que entre en ese teléfono puede verlo. Cuando quieras borrarlo,
+        <strong>Ajustes → Borrar mis datos de este teléfono</strong> lo elimina junto
+        con los bloques que hayas ocultado o movido y tu plan de matrícula.
+      </p>
+      <p>
+        Desinstalar la app elimina todo lo que quedara en el teléfono. Lo único que
+        puede quedar fuera de él son los reportes que hayas enviado: para borrar uno,
+        escríbeme con su código <code>R-XXXX</code>.
+      </p>
+    </section>
+
+    <section id="menores">
+      <h2>Menores de edad</h2>
+      <p>
+        UNcamPus está dirigida a estudiantes universitarios y no se dirige a menores
+        de 13 años.
+      </p>
+    </section>
+
+    <section id="cambios">
+      <h2>Cambios</h2>
+      <p>
+        Si esta política cambia, la fecha de arriba lo dirá. Si algún día la app
+        empezara a enviar datos a algún sitio, se anunciaría dentro de la propia app
+        antes de hacerlo.
+      </p>
+    </section>
+
+    <section id="contacto">
+      <h2>Contacto</h2>
+      <p>
+        Escribe a <a href="mailto:yvjms.10@gmail.com">yvjms.10@gmail.com</a>.
+      </p>
+    </section>
+
+  </main>
+
+  <footer class="pie">
+    <p>UNcamPus — aplicación no oficial hecha por un estudiante de la UNP.</p>
+    <p>Esta página no usa cookies, ni analítica, ni recursos de terceros.</p>
+  </footer>
+
 </div>
-
-<h2>Lo corto</h2>
-<p>
-  UNcamPus <strong>no tiene servidor propio</strong>. Todo lo que ves en la app
-  se lo pide tu propio teléfono directamente a la UNP, con tu sesión, y se queda
-  ahí: no lo recojo, no lo almaceno fuera de tu teléfono y no lo comparto con
-  nadie.
-</p>
-<p>
-  <strong>Hay una sola excepción, y la decides tú:</strong> si envías un reporte
-  de problema, ese mensaje sí me llega, con tu código de estudiante para poder
-  responderte. Está explicado entero más abajo.
-</p>
-
-<h2>Qué datos maneja la app y dónde viven</h2>
-<ul>
-  <li>
-    <strong>Tus datos académicos</strong> —horario, notas, matrícula, plan de
-    estudios y publicaciones del aula virtual—. Se piden a los portales de la
-    UNP con tu propia sesión y se guardan en una base de datos
-    <strong>dentro de tu teléfono</strong>, para que la app abra al instante y
-    siga sirviendo sin señal. No salen de ahí.
-  </li>
-  <li>
-    <strong>Tu usuario y tu contraseña del campus</strong>, y solo si activas
-    «Entrar directo la próxima vez». Se guardan cifrados con AES-256
-    (<code>EncryptedSharedPreferences</code>) y la llave maestra vive en el
-    almacén de claves de Android —respaldado por hardware en los equipos que lo
-    tienen—, así que no se puede leer ese archivo sacándolo del teléfono. Se
-    usan para una sola cosa: volver a entrar al portal de la UNP cuando la
-    sesión caduca, para poder revisar el aula virtual en segundo plano. Al
-    desactivar la opción se borran al momento.
-  </li>
-  <li>
-    <strong>Cookies de sesión</strong> del campus, para no pedirte la
-    contraseña en cada petición. Caducan a las 8 horas y se borran al cerrar
-    sesión.
-  </li>
-  <li>
-    <strong>Una copia de seguridad de todo eso, cifrada, en el propio
-    teléfono.</strong> Sirve para que volver a entrar después de un tiempo no te
-    obligue a esperar a que se descargue el expediente entero. Está cifrada con
-    AES-256-GCM y su llave vive en el almacén de claves de Android, igual que la
-    contraseña; el archivo lleva por nombre un resumen de tu usuario, así que en
-    un teléfono compartido nadie ve de quién es, y solo se puede volcar
-    <strong>después</strong> de que el campus acepte esas mismas credenciales.
-    <strong>Sobrevive a «Cerrar sesión»</strong> —de eso se trata— y desaparece
-    con «Borrar mis datos de este teléfono» y al desinstalar.
-  </li>
-  <li>
-    <strong>Lo que escribes en el simulador de notas.</strong> Es lo único que
-    no viene del campus, y por eso es lo único que <strong>no se borra al
-    cerrar sesión</strong>: no existe en ningún servidor y no se podría volver a
-    descargar. Se queda en el teléfono, marcado con tu código de estudiante, así
-    que si otra persona entra con su cuenta en ese mismo teléfono no lo ve. Para
-    borrarlo hay una opción propia en Ajustes.
-  </li>
-</ul>
-
-<h2>Lo que la app escribe en el campus</h2>
-<p>
-  Desde la versión 1.13 la app <strong>puede publicar comentarios en los foros
-  del aula virtual</strong> y borrar los tuyos. Hasta entonces solo leía. Eso va
-  a tu propio aula virtual, con tu propia sesión, y solo cuando tú escribes el
-  comentario y pulsas el botón: <strong>a mí no me llega nada</strong> y no pasa
-  por ningún servidor mío. Ten en cuenta lo obvio, que es cosa del campus y no de
-  la app: <strong>un comentario en un foro lo ven tu docente y tu clase</strong>.
-</p>
-<p>
-  Desde el 5 de setiembre de 2026 la app <strong>también puede entregar una
-  tarea</strong> en el aula virtual. Estuvo desactivado a propósito, y la razón
-  no ha desaparecido: un comentario se puede borrar, y <strong>una entrega gasta
-  un intento y puede costar una nota</strong>. Por eso el botón solo aparece con
-  el plazo abierto y con intentos disponibles, siempre te pregunta antes
-  diciéndote cuántos intentos te quedarán, y el archivo sale de tu teléfono
-  únicamente hacia el aula virtual de la UNP, con tu sesión. A mí no me llega
-  nada.
-</p>
-
-<h2>Qué NO hace la app</h2>
-<ul>
-  <li>
-    No envía tus datos a ningún servidor mío por su cuenta. La única
-    excepción son los <strong>reportes de problemas</strong>, que sales tú a
-    mandar: ver la sección siguiente.
-  </li>
-  <li>No usa analítica, ni publicidad, ni informes de fallos automáticos: nada se envía sin que tú lo pidas.</li>
-  <li>No comparte, vende ni cede información a nadie.</li>
-  <li>No pide tu ubicación, contactos, cámara, micrófono ni archivos.</li>
-  <li>
-    No sube nada a la nube: la copia de seguridad automática de Android y la
-    transferencia a un teléfono nuevo están <strong>desactivadas</strong> para
-    esta app.
-  </li>
-</ul>
-
-<h2>Cuando reportas un problema</h2>
-<p>
-  Es <strong>lo único que sale de tu teléfono hacia mí</strong> —lo demás que
-  sale va a la UNP, con tu sesión— y solo ocurre si tú pulsas «Enviar» en
-  <strong>Ajustes → Reportar un problema</strong> o en el mismo botón de la
-  pantalla de entrada.
-</p>
-<h3>Qué se envía</h3>
-<ul>
-  <li>El mensaje que escribes y si lo marcaste como fallo, idea o duda.</li>
-  <li>La pantalla desde la que reportaste.</li>
-  <li>
-    <strong>Tu código de estudiante</strong>, para poder escribirte si el
-    reporte no se entiende o falta un dato. Si reportas sin haber iniciado
-    sesión, se manda solo si tú lo escribes: ahí es opcional.
-  </li>
-  <li>Versión de la app, modelo del teléfono, versión de Android e idioma.</li>
-  <li>Una captura, <strong>solo si tú la adjuntas</strong>.</li>
-</ul>
-<h3>Qué NO se envía</h3>
-<p>
-  Tu nombre, tus notas, tu horario, tu asistencia y tu sesión del campus
-  <strong>no salen nunca</strong> en un reporte. Lo único que puede llevar datos
-  de más es la captura que elijas tú, y por eso la app te avisa antes de dejar
-  adjuntarla.
-</p>
-<h3>A dónde llega y quién lo ve</h3>
-<p>
-  A una hoja de cálculo <strong>privada</strong> del autor, alojada en Google
-  (Google Sheets y Google Drive, para los adjuntos). El envío va cifrado por
-  HTTPS. No hay intermediarios, no se comparte con terceros, no se usa para
-  publicidad y no se cruza con ninguna otra información.
-</p>
-<h3>Cuánto se guarda y cómo se borra</h3>
-<p>
-  Se guarda mientras haga falta para arreglar lo reportado. Al enviar, la app te
-  da un código corto —del estilo <code>R-4F2A</code>—: escríbeme con ese código
-  y borro ese reporte. Es la forma de identificar el tuyo sin que tengas que
-  darme nada más.
-</p>
-
-<h2>Permisos que pide y para qué</h2>
-<ul>
-  <li><strong>Internet</strong> y <strong>estado de la red</strong>: para hablar con los portales de la UNP y saber si hay conexión.</li>
-  <li><strong>Notificaciones</strong>: para avisarte cuando un docente publica material, tareas o anuncios. Si lo rechazas, la app funciona entera, solo sin avisos.</li>
-  <li>
-    La app incluye la biblioteca WorkManager de Android para revisar el aula
-    virtual cada hora. Esa biblioteca añade por su cuenta los permisos
-    <code>WAKE_LOCK</code>, <code>RECEIVE_BOOT_COMPLETED</code> y
-    <code>FOREGROUND_SERVICE</code>. UNcamPus <strong>no arranca ningún
-    servicio en primer plano</strong>.
-  </li>
-</ul>
-
-<h2>Cómo borrar tus datos</h2>
-<p>
-  En <strong>Ajustes → Cerrar sesión</strong> se borran las credenciales
-  guardadas, las cookies y la copia local de lo que publica el campus. Lo que
-  <strong>sí queda</strong> es la copia de seguridad cifrada descrita arriba, para
-  que la próxima vez que entres con esa misma cuenta la app abra de una: nadie
-  puede leerla sin la llave del almacén de Android, y no se vuelca hasta que el
-  campus acepta tu usuario y tu contraseña.
-</p>
-<p>
-  Lo que escribiste en el simulador de notas <strong>se conserva a propósito</strong>,
-  porque no se puede recuperar de ningún sitio: queda marcado con tu código y
-  nadie más que entre en ese teléfono puede verlo. Cuando quieras borrarlo,
-  <strong>Ajustes → Borrar mis datos de este teléfono</strong> lo elimina junto
-  con los bloques que hayas ocultado o movido y tu plan de matrícula.
-</p>
-<p>
-  Desinstalar la app elimina todo lo que quedara en el teléfono. Lo único que
-  puede quedar fuera de él son los reportes que hayas enviado: para borrar uno,
-  escríbeme con su código <code>R-XXXX</code>.
-</p>
-
-<h2>Menores de edad</h2>
-<p>
-  UNcamPus está dirigida a estudiantes universitarios y no se dirige a menores
-  de 13 años.
-</p>
-
-<h2>Cambios</h2>
-<p>
-  Si esta política cambia, la fecha de arriba lo dirá. Si algún día la app
-  empezara a enviar datos a algún sitio, se anunciaría dentro de la propia app
-  antes de hacerlo.
-</p>
-
-<h2>Contacto</h2>
-<p>
-  Escribe a <a href="mailto:yvjms.10@gmail.com">yvjms.10@gmail.com</a>.
-</p>
 
 </body>
 </html>
